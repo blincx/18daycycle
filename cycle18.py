@@ -25,7 +25,7 @@ def get_args():
         print("A01")
     elif len(sys.argv)==2:
         if sys.argv[1]=="help":
-            helptext = """Please call cycle18 with the relevant birthdate in the following format: MM-DD-YYYY, adding 'json' as a second argument if you want output in JSON."""
+            helptext = """Please call cycle18 with the relevant birthdate in the following format: MM-DD-YY, adding 'json' as a second argument if you want output in JSON."""
             print(helptext)                    
             print("A02")
             sys.exit(0)
@@ -40,9 +40,6 @@ def get_args():
     print(f"json is {json}")
     return (birfdae, json)
 
-get_args()
-sys.exit(1)
-
 
 def check_date(birthday):
     try:
@@ -52,11 +49,6 @@ def check_date(birthday):
         raise e
 
 
-def earliest_possible_first_day():
-    today = datetime.now()
-    earliest_possible_first_day = today - timedelta(days=18)
-    return earliest_possible_first_day
-
 def cycle_up(first_date,multiple):
     new_first_date = first_date + timedelta(days=(18*multiple))
     # nota bene: go one day beyond, to start the new cycle
@@ -64,24 +56,56 @@ def cycle_up(first_date,multiple):
 
 
 
-def cycle_to_the_present_month(first_date):
+def cycle_up_to_last_month(first_date):
     date_to_check = first_date 
     fdlm = first_day_of_last_month = (datetime.today().replace(day=1) - timedelta(days=1)).replace(day=1)
 
     # loop through adding 18 days until date_to_check hits prior month
-    while fdlm.year != date_to_check.year and
-    fdlm.month != date_to_check.month:
+    while fdlm.year != date_to_check.year:
         # loop up 18 days
-        print(f"date to check is now: {date_to_check}")
         date_to_check = cycle_up(date_to_check,1)
 
+    while fdlm.month != date_to_check.month:
+        date_to_check = cycle_up(date_to_check,1)
+
+    totaldays = (date_to_check-first_date).days
+
+    # check if its cleanly divisible by 18, remainder should = 0
+    if (totaldays % 18) != 0:
+        raise "You broken the calculation machinery!"
+
+    first_day_1_last_month = date_to_check
+    return first_day_1_last_month
 
 
+def build_final_cycles_calendar_data(day1):
+    two_weeks_in_future = datetime.now() + timedelta(days=14)
+    calendar_data = []
+    loop_date = day1
+    day_of_cycle = 1
+    while loop_date < two_weeks_in_future:
+        calendar_data.append((loop_date.year,loop_date.month,loop_date.day,day_of_cycle))
+        if day_of_cycle==18:
+            day_of_cycle=1
+        else: 
+            day_of_cycle = day_of_cycle + 1
+        loop_date = loop_date + timedelta(days=1)
+    return calendar_data  
 
 
-# 2/26/2020 - recent first day
-fast_forward_to_recent_first_day = cycle_up(StartDate,721) # already experienced this many cycles
+def main():
+    birthday, json = get_args()
+    startdate = check_date(birthday)
+    print(startdate)
+    first_day_1_last_month = cycle_up_to_last_month(startdate)
+    aa = build_final_cycles_calendar_data(first_day_1_last_month)
+    print(aa)
+    sys.exit(1)
 
+
+main()
+
+fast_forward_to_recent_first_day = datetime.now()
 # days from first day of 722 cycle to now
 num_of_days_to_label = (datetime.now() - fast_forward_to_recent_first_day).days + 1 # + 1 because it needs to round up
 
