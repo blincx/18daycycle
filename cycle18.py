@@ -23,7 +23,7 @@ def get_args():
         json_flag = False
     elif len(sys.argv)==2:
         if sys.argv[1]=="help":
-            helptext = """Please call cycle18 with the relevant birthdate in the following format: MM-DD-YY, adding 'json_flag' as a second argument if you want output in JSON."""
+            helptext = """Please call cycle18 with the relevant birthdate in the following format: YYYY-MM-DD, adding 'json' as a second argument if you want output in JSON."""
             print(helptext)                    
             sys.exit(0)
         birfdae = sys.argv[1]
@@ -36,7 +36,7 @@ def get_args():
 
 def check_date(birthday):
     try:
-        StartDate = datetime.strptime(birthday, "%m-%d-%y")
+        StartDate = datetime.strptime(birthday, "%Y-%m-%d")
         return StartDate
     except Exception as e:
         raise e
@@ -104,11 +104,13 @@ def print_to_screen(data):
 def main():
     birthday, json_flag = get_args()
     startdate = check_date(birthday)
+    print(startdate)
     first_day_1_last_month = cycle_up_to_last_month(startdate)
     calendar_data,day_collector = build_final_cycles_calendar_data(first_day_1_last_month)
     if not json_flag:
         print_to_screen(day_collector)
     elif json_flag:
+        print(calendar_data)
         abba = json.dumps({"caldata":calendar_data})
         print(abba)
     sys.exit(0)
