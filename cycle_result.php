@@ -31,19 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 body{color:#000;background-color:#fff;font-family:sans-serif;margin:2% 5%}
 
-
-
-
-
-
-
-
-.container {
+.container1 {
     width: 80%;
     margin: 0 auto;
     padding: 10px;
     background: #f0e68c;
+    background: #fffdb5;
     border: 1px solid;
+}
+
+.container2 {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    background: white;
 }
 
 .wrapper {
@@ -68,16 +69,50 @@ img {
   margin: auto;
 }
 
+.button {
+  position: relative;
+  float: right;
+  display: inline-block;
+  padding: 0.618rem 1.618rem;
+  cursor: pointer;
+  color: #FFF;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  background: #434343 none repeat scroll 0% 0%;
+  border: 1px solid #242424;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 0 0 rgba(0, 0, 0, 0.5) inset,
+    0 1.25rem 0 rgba(255, 255, 255, 0.08) inset,
+    0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
+    0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
+
+  transition: all 0.2s linear 0s;
+
+  text-align: center;
+  text-decoration: none;
+  /*margin: 0.618rem;*/
+}
+
+.button.blue {
+  background-color: #aff9fa;
+}
+
 </style>
 </head>
 
 
 <body>
 
-<div id="outer_container" class="container">
+<div id="outer_container" class="container1">
     <h4 style="font-size:2vw; text-align: center;">your location today in the 18 day adept's cycle</h4>
         <div id="sinewavecontainer" class="wrapper">
     </div>
+</div>
+<div id="second_container" class="container2">
+   <button class="button blue">See Extended Schedule</button>
 </div>
 
 <script>
