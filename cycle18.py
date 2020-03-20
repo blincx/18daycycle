@@ -10,7 +10,7 @@ def loadconfig():
     with open(r'birthday.yaml') as file:
         data = yaml.load(file, Loader=yaml.FullLoader)
 
-        return data["birthdate"]
+        return str(data["birthdate"])
 
 
 def get_args():
@@ -28,18 +28,15 @@ def get_args():
             sys.exit(0)
         birfdae = sys.argv[1]
         json_flag = False
-    elif len(sys.argv)==3:
+    elif len(sys.argv) == 3:
         birfdae = sys.argv[1]
-        json_flag = (sys.argv[2].lower()=='json')
+        json_flag = (sys.argv[2].lower() == 'json')
     return (birfdae, json_flag)
 
 
 def check_date(birthday):
-    try:
-        StartDate = datetime.strptime(birthday, "%Y-%m-%d")
-        return StartDate
-    except Exception as e:
-        raise e
+    StartDate = datetime.strptime(birthday, "%Y-%m-%d")
+    return StartDate
 
 
 def cycle_up(first_date,multiple):
@@ -49,17 +46,19 @@ def cycle_up(first_date,multiple):
 
 
 
+
 def cycle_up_to_last_month(first_date):
-    date_to_check = first_date 
-    fdlm = first_day_of_last_month = (datetime.today().replace(day=1) - timedelta(days=1)).replace(day=1)
+    date_to_check = first_date
+    # first day of last month
+    fdlm = (datetime.today().replace(day=1) - timedelta(days=1)).replace(day=1)
 
     # loop through adding 18 days until date_to_check hits prior month
     while fdlm.year != date_to_check.year:
         # loop up 18 days
-        date_to_check = cycle_up(date_to_check,1)
+        date_to_check = cycle_up(date_to_check, 1)
 
     while fdlm.month != date_to_check.month:
-        date_to_check = cycle_up(date_to_check,1)
+        date_to_check = cycle_up(date_to_check, 1)
 
     totaldays = (date_to_check-first_date).days
 
@@ -72,6 +71,7 @@ def cycle_up_to_last_month(first_date):
 
 
 def build_final_cycles_calendar_data(day1):
+    today = None
     two_weeks_in_future = datetime.now() + timedelta(days=14)
     calendar_data = [] # for json_flag output
     day_collector = [] # for text stdout output
@@ -81,13 +81,15 @@ def build_final_cycles_calendar_data(day1):
     while loop_date < two_weeks_in_future:
         calendar_data.append((loop_date.year,loop_date.month,loop_date.day,day_of_cycle))
         day_collector.append((loop_date.strftime("%d/%m"),day_of_cycle))
+        # if today, populate var with day_of_cycle
+        if loop_date.day==datetime.now().day and loop_date.month==datetime.now().month:
+            today = day_of_cycle
         if day_of_cycle==18:
             day_of_cycle=1
         else: 
             day_of_cycle = day_of_cycle + 1
         loop_date = loop_date + timedelta(days=1)
-    return (calendar_data,day_collector)
-
+    return (today,calendar_data,day_collector)
 
 
 
@@ -104,14 +106,12 @@ def print_to_screen(data):
 def main():
     birthday, json_flag = get_args()
     startdate = check_date(birthday)
-    print(startdate)
     first_day_1_last_month = cycle_up_to_last_month(startdate)
-    calendar_data,day_collector = build_final_cycles_calendar_data(first_day_1_last_month)
+    today,calendar_data,day_collector = build_final_cycles_calendar_data(first_day_1_last_month)
     if not json_flag:
         print_to_screen(day_collector)
     elif json_flag:
-        print(calendar_data)
-        abba = json.dumps({"caldata":calendar_data})
+        abba = json.dumps({"today": today, "caldata": calendar_data})
         print(abba)
     sys.exit(0)
 
