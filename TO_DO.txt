@@ -1,0 +1,18 @@
+To do list:
+---
+
+
+1. Strengthen security by putting regex filter on input going into shell
+command.
+
+2. rename everything 18daycycle 18dc
+
+3. Sexy, sexy sine wave pictures, get the best
+
+4. take 18 pictures of a sine wave, display graphic based on TODAY value
+
+5. unit test, unit test, unit test
+
+6. Add 120 day cookie that autopopulates the birthdate field
+
+7. Add some verbiage and a header

@@ -5,9 +5,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cwd = getcwd();
     $birthdate = $_POST['birthday'];
     echo $birthdate;
-    $command = escapeshellcmd($cwd . '/' . 'cycle18.py ' . $birthdate . ' json');
-    $output = shell_exec($command);
-    // echo $output;
+
+    // security: filter for only numbers, no letters    
+    if (preg_match("/[0-9]*-[0-9]*-[0-9]*/", $birthdate))
+    {
+        $command = escapeshellcmd($cwd . '/' . 'cycle18.py ' . $birthdate . ' json');
+
+        // paranoid security check  
+        if (strpos($command, 'rm ') === false) {
+            if (strpos($command, ';') === false) {
+                $output = shell_exec($command);
+            }        
+        } 
+        // echo $output;
+    }
 }
 
 ?>
