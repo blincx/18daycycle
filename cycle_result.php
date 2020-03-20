@@ -30,7 +30,7 @@ var counter = 0, x=0,y=180;
 
 //100 iterations
 var increase = 90/180*Math.PI / 9;
-for(i=0; i<=360; i+=10){
+for(i=0; i<=360; i+=9.5){
     ctx.moveTo(x,y);
     x = i;
     y =  180 - Math.sin(counter) * 120;
