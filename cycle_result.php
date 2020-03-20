@@ -27,9 +27,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <canvas id="background" width="360" height="360" style="z-index: 2;" /> -->
 
 <style>
+
+
+body{color:#000;background-color:#fff;font-family:sans-serif;margin:2% 5%}
+
+
+
+
+
+
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    background: #f0e68c;
+    border: 1px solid;
+}
+
 .wrapper {
   position: relative;
-  padding-top: 36.25%; /* 16:9 Aspect Ratio */
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
 }
 img {
   position: absolute;
@@ -48,15 +67,18 @@ img {
   bottom: -50%;
   margin: auto;
 }
+
 </style>
 </head>
 
 
 <body>
-<div id="container" class="wrapper">
 
+<div id="outer_container" class="container">
+    <h4 style="font-size:2vw; text-align: center;">your location today in the 18 day adept's cycle</h4>
+        <div id="sinewavecontainer" class="wrapper">
+    </div>
 </div>
-
 
 <script>
 function show_image(src, alt) {
@@ -65,7 +87,7 @@ function show_image(src, alt) {
     img.alt = alt;
     // This next line will just add it to the <body> tag
     img.className = "img centered";
-    container = document.getElementById("container");
+    container = document.getElementById("sinewavecontainer");
     container.appendChild(img);
 }
 
