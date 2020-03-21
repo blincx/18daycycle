@@ -2,13 +2,13 @@ To do list:
 ---
 
 1. Make more fluidly responsive, check across browsers and mobile
-A. OPERA.
-B. FIREFOX
-C. SAFARI
-D. CHROME
-E. INTERNET EXPLORER
+A. done OPERA.
+B. done FIREFOX
+C. done SAFARI
+D. done CHROME
+E. -INTERNET EXPLORER
 
-2. Add Extended Schedule
+2. Add Validation for Date input - plus error screen when its wrong:
 
 5. unit test, unit test, unit test
 

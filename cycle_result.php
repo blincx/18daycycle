@@ -1,36 +1,47 @@
-<head>
 <?php 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // …
-        $cwd = getcwd();
-        $birthdate = $_POST['birthday'];
-        echo $birthdate;
-
-        // have to switch safari date style:
-        if (strpos($birthdate, '/') !== false) {
-            $birthdate = str_replace("/","-",$birthdate);
-            $year1 = substr($birthdate, -4,4);
-            $month1 = substr($birthdate,0,2);
-            $day1 = substr($birthdate,3,2);
-            $newstring = $year1 . "-" . $month1 . "-" . $day1;
-            $birthdate = $newstring;
-        }
-
-        // security: filter for only numbers, no letters    
-        if (preg_match("/[0-9]*-[0-9]*-[0-9]*/", $birthdate))
-        {
-            $command = escapeshellcmd($cwd . '/' . '18daycycle.py ' . $birthdate . ' json');
-            // paranoid security check  
-            if (strpos($command, 'rm ') === false) {
-                if (strpos($command, ';') === false) {
-                    $output = shell_exec($command);
-                }        
-            } 
-            // echo $output;
+    // if no cookie and no POST, redirect
+    if(!isset($_COOKIE['cycle18'])) {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header("Location: cycle18.php");
         }
     }
-?>
 
+    // otherwise, game on
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $birthdate = $_POST['birthday'];
+    } elseif (isset($_COOKIE['cycle18'])) {
+        $birthdate = $_COOKIE['cycle18'];
+    }
+     
+    
+    setcookie('cycle18', $birthdate, time() + (86400 * 90), "/");
+    echo $birthdate;
+
+    // have to switch safari date style:
+    if (strpos($birthdate, '/') !== false) {
+        $birthdate = str_replace("/","-",$birthdate);
+        $year1 = substr($birthdate, -4,4);
+        $month1 = substr($birthdate,0,2);
+        $day1 = substr($birthdate,3,2);
+        $newstring = $year1 . "-" . $month1 . "-" . $day1;
+        $birthdate = $newstring;
+    }
+
+    // security: filter for only numbers, no letters    
+    if (preg_match("/[0-9]*-[0-9]*-[0-9]*/", $birthdate))
+    {
+        $cwd = getcwd();
+        $command = escapeshellcmd($cwd . '/' . '18daycycle.py ' . $birthdate . ' json');
+        // paranoid security check  
+        if (strpos($command, 'rm ') === false) {
+            if (strpos($command, ';') === false) {
+                $output = shell_exec($command);
+            }        
+        } 
+        // echo $output;
+    }
+?>
+<head>
 <link rel="stylesheet" href="styles.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -76,8 +87,6 @@ var which_img_to_show = "pics/cyc_".concat(today).concat(".jpg");
 var daydata = data['daydata'];
 
 
-
-
 function addParagraphs(text) {
     var p2 = document.createElement('p');
     p2.innerHTML = text;
@@ -99,7 +108,6 @@ function show_image(src, alt) {
     addParagraphs("<span>DATE</span> - <span>DAY OF CYCLE</span>");
     for(let i=0;i<daydata.length;i++)
         {
-            console.log(daydata[i]);
             addParagraphs("<span>" + daydata[i][0] + "</span> &#9710; <span>" + daydata[i][1] + "</span>");
         }
 }
