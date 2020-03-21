@@ -1,20 +1,13 @@
 <html>
-<script type="text/javascript" src="checkdate.js"/>
-<script type="text/javascript">
-    var datefield=document.createElement("input")
+<head>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
-  
-
-    datefield.setAttribute("type", "date")
-    if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
-        document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
-        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
-        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
-    }
-</script>
- 
+<script type="text/javascript" src="checkdate.js"></script>
 
 
+</head>
 <body>
 
 
@@ -42,10 +35,10 @@
 var is_safari = false;
 if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
         is_safari = true;
-    }
+}
 
 if (!is_safari) {
-    if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+    if (!document.support_date){ //if browser doesn't support input type="date", initialize date picker widget:
         jQuery(function($){ //on document.ready
             $('#birthday').datepicker();
         })
@@ -64,12 +57,13 @@ window.getCookie = function(name) {
   if (match) return match[2];
 }
 
-
-dateinput = document.getElementById("birthday");
-abba = window.getCookie("cycle18");
-if (abba) {
-    dateinput.value = abba;
-}
+$( document ).ready(function() {
+    dateinput = document.getElementById("birthday");
+    abba = window.getCookie("cycle18");
+    if (abba) {
+        dateinput.value = abba;
+    }
+});
 </script>
 
 

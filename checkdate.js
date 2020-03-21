@@ -3,7 +3,8 @@
 
   function checkDate(field)
   {
-    var allowBlank = true;
+    console.log("A01");     
+    var allowBlank = false;
     var minYear = 1902;
     var maxYear = (new Date()).getFullYear();
 
@@ -11,19 +12,26 @@
 
     // regular expression to match required date format
     re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+    console.log(field.value);
 
     if(field.value != '') {
-      if(regs = field.value.match(re)) {
+        console.log("A02");     
+    if(regs = field.value.match(re)) {
+            console.log("A03");     
         if(regs[2] < 1 || regs[2] > 31) {
-          errorMsg = "Invalid value for day: " + regs[1];
-        } else if(regs[1] < 1 || regs[1] > 12) {
-          errorMsg = "Invalid value for month: " + regs[2];
-        } else if(regs[3] < minYear || regs[3] > maxYear) {
-          errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
-        }
-      } else {
-        errorMsg = "Invalid date format: " + field.value;
-      }
+              errorMsg = "Invalid value for day: " + regs[1];
+                console.log("A04");     
+
+            } else if(regs[1] < 1 || regs[1] > 12) {
+              errorMsg = "Invalid value for month: " + regs[2];
+            } else if(regs[3] < minYear || regs[3] > maxYear) {
+ console.log("A05");     
+  
+                errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
+            }
+          } else {
+            errorMsg = "Invalid date format: " + field.value;
+          }
     } else if(!allowBlank) {
       errorMsg = "Empty date not allowed!";
     }
