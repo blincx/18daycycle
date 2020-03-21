@@ -8,10 +8,18 @@ C. done SAFARI
 D. done CHROME
 E. -INTERNET EXPLORER
 
-2. Add Validation for Date input - plus error screen when its wrong:
-
 5. unit test, unit test, unit test
 
-6. Add 120 day cookie that autopopulates the birthdate field
-
 7. Add some verbiage and a header
+
+8. Add Logging!
+
+9. Add Law of One inspired stylings and front page
+
+10. Fix bug:
+in Safari, this breaks it:
+ 03/03/2020
+
+ recent dates cause it look for cyc_null ?
+
+

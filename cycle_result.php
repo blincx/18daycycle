@@ -105,7 +105,7 @@ function show_image(src, alt) {
     container.appendChild(img);
 
     var modal = document.getElementById("daydata");
-    addParagraphs("<span>DATE</span> - <span>DAY OF CYCLE</span>");
+    addParagraphs("<u><span>DATE</span> &#9710; <span>DAY OF CYCLE</span></u>");
     for(let i=0;i<daydata.length;i++)
         {
             addParagraphs("<span>" + daydata[i][0] + "</span> &#9710; <span>" + daydata[i][1] + "</span>");

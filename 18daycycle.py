@@ -3,13 +3,18 @@
 from datetime import datetime,timedelta
 import yaml, sys, json
 import pprint
+import logging
 
+DEBUG = False
+if DEBUG:
+    logging.basicConfig(filename='logs/18daycycle.log', level=logging.DEBUG)
+else:
+    logging.basicConfig(filename='logs/18daycycle.log', level=logging.INFO)
 
 
 def loadconfig():
     with open(r'birthday.yaml') as file:
         data = yaml.load(file, Loader=yaml.FullLoader)
-
         return str(data["birthdate"])
 
 
@@ -31,11 +36,13 @@ def get_args():
     elif len(sys.argv) == 3:
         birfdae = sys.argv[1]
         json_flag = (sys.argv[2].lower() == 'json')
+    logging.debug(f"get_args returned: birfdae={birfdae} json_flag={json_flag}")
     return (birfdae, json_flag)
 
 
 def check_date(birthday):
     StartDate = datetime.strptime(birthday, "%Y-%m-%d")
+    logging.debug(f"received date: {birthday}")
     return StartDate
 
 
@@ -64,13 +71,16 @@ def cycle_up_to_last_month(first_date):
 
     # check if its cleanly divisible by 18, remainder should = 0
     if (totaldays % 18) != 0:
+        logging.error(f"we cycled up and got a number that doesn't divide cleanly by 18: {totaldays}")
         raise "You broken the calculation machinery!"
 
     first_day_1_last_month = date_to_check
+    logging.debug(f"cycle_up returned {first_day_1_last_month}")
     return first_day_1_last_month
 
 
 def build_final_cycles_calendar_data(day1):
+    logging.debug("calling build_final_cycles_calendar_data")
     today = None
     two_weeks_in_future = datetime.now() + timedelta(days=14)
     calendar_data = [] # for json_flag output
@@ -108,12 +118,15 @@ def main():
     startdate = check_date(birthday)
     first_day_1_last_month = cycle_up_to_last_month(startdate)
     today,calendar_data,day_collector = build_final_cycles_calendar_data(first_day_1_last_month)
+    # today 
+    logging.debug(f"returned vars: today={today};\ncalendar_data={calendar_data};")
     if not json_flag:
         print_to_screen(day_collector)
     elif json_flag:
         #abba = json.dumps({"today": today, "caldata":calendar_data,"daydata":day_collector[-15:-2]})
         abba = json.dumps({"today": today, "caldata":calendar_data,"daydata":day_collector[-15:-2]})
         print(abba) # this is necessary
+    logging.info(f"script called with args: {sys.argv}; birthday={birthday}; json_flag={json_flag}; startdate={startdate}; first_day_1_last_month={first_day_1_last_month}; today={today};")
     sys.exit(0)
 
 
