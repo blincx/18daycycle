@@ -15,7 +15,6 @@
      
     
     setcookie('cycle18', $birthdate, time() + (86400 * 90), "/");
-    echo $birthdate;
 
     // have to switch safari date style:
     if (strpos($birthdate, '/') !== false) {
@@ -38,8 +37,13 @@
                 $output = shell_exec($command);
             }        
         } 
-        // echo $output;
+        $data_json = json_decode($output);
     }
+    // redirect if someone uses a date too close to present
+    if (!isset($data_json->today)) {
+        header("Location: cycle18.php");
+    }
+    echo $birthdate;
 ?>
 <head>
 <link rel="stylesheet" href="styles.css">
