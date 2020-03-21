@@ -6,11 +6,20 @@
         $birthdate = $_POST['birthday'];
         echo $birthdate;
 
+        // have to switch safari date style:
+        if (strpos($birthdate, '/') !== false) {
+            $birthdate = str_replace("/","-",$birthdate);
+            $year1 = substr($birthdate, -4,4);
+            $month1 = substr($birthdate,0,2);
+            $day1 = substr($birthdate,3,2);
+            $newstring = $year1 . "-" . $month1 . "-" . $day1;
+            $birthdate = $newstring;
+        }
+
         // security: filter for only numbers, no letters    
         if (preg_match("/[0-9]*-[0-9]*-[0-9]*/", $birthdate))
         {
             $command = escapeshellcmd($cwd . '/' . '18daycycle.py ' . $birthdate . ' json');
-
             // paranoid security check  
             if (strpos($command, 'rm ') === false) {
                 if (strpos($command, ';') === false) {
