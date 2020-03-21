@@ -12,8 +12,6 @@ E. -INTERNET EXPLORER
 
 7. Add some verbiage and a header
 
-8. Add Logging!
-
 9. Add Law of One inspired stylings and front page
 
 10. Fix bug:
