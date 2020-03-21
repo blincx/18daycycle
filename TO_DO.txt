@@ -1,15 +1,14 @@
 To do list:
 ---
 
+1. Make more fluidly responsive, check across browsers and mobile
+A. OPERA.
+B. FIREFOX
+C. SAFARI
+D. CHROME
+E. INTERNET EXPLORER
 
-1. Strengthen security by putting regex filter on input going into shell
-command.
-
-2. rename everything 18daycycle 18dc
-
-3. Sexy, sexy sine wave pictures, get the best
-
-4. take 18 pictures of a sine wave, display graphic based on TODAY value
+2. Add Extended Schedule
 
 5. unit test, unit test, unit test
 
