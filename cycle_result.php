@@ -48,30 +48,6 @@
     </div>
 </div>
 
-<script>
-function show_image(src, alt) {
-    var img = document.createElement("img");
-    img.src = src;
-    img.alt = alt;
-    // This next line will just add it to the <body> tag
-    img.className = "img centered";
-    container = document.getElementById("sinewavecontainer");
-    container.appendChild(img);
-}
-
-
-
-var data = <?=$output?>;
-var today = data['today'];
-var which_img_to_show = "pics/cyc_".concat(today).concat(".jpg");
-
-
-
-window.onload = show_image(which_img_to_show, "cycle_sine");
-
-</script>
-
-
 
 
 <!-- The Modal -->
@@ -83,9 +59,7 @@ window.onload = show_image(which_img_to_show, "cycle_sine");
       <span class="close">&times;</span>
       <h2 style="text-align: center;">&#9765;</h2>
     </div>
-    <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
+    <div id="daydata" class="modal-body">
     </div>
     <div class="modal-footer">
         <br/>
@@ -93,6 +67,48 @@ window.onload = show_image(which_img_to_show, "cycle_sine");
   </div>
 
 </div>
+
+<script>
+    
+var data = <?=$output?>;
+var today = data['today'];
+var which_img_to_show = "pics/cyc_".concat(today).concat(".jpg");
+var daydata = data['daydata'];
+
+
+
+
+function addParagraphs(text) {
+    var p2 = document.createElement('p');
+    p2.innerHTML = text;
+    p2.className = "modal_para";
+    var p3 = document.getElementById("daydata");
+    p3.parentNode.insertBefore(p2, p3);
+}
+    
+function show_image(src, alt) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.alt = alt;
+    // This next line will just add it to the <body> tag
+    img.className = "img centered";
+    container = document.getElementById("sinewavecontainer");
+    container.appendChild(img);
+
+    var modal = document.getElementById("daydata");
+    addParagraphs("<span>DATE</span> - <span>DAY OF CYCLE</span>");
+    for(let i=0;i<daydata.length;i++)
+        {
+            console.log(daydata[i]);
+            addParagraphs("<span>" + daydata[i][0] + "</span> &#9710; <span>" + daydata[i][1] + "</span>");
+        }
+}
+
+
+window.onload = show_image(which_img_to_show, "cycle_sine");
+
+</script>
+
 
 
 <script>

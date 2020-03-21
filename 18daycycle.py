@@ -80,7 +80,7 @@ def build_final_cycles_calendar_data(day1):
     day_of_cycle = 1
     while loop_date < two_weeks_in_future:
         calendar_data.append((loop_date.year,loop_date.month,loop_date.day,day_of_cycle))
-        day_collector.append((loop_date.strftime("%d/%m"),day_of_cycle))
+        day_collector.append((loop_date.strftime("%B %d"),day_of_cycle))
         # if today, populate var with day_of_cycle
         if loop_date.day==datetime.now().day and loop_date.month==datetime.now().month:
             today = day_of_cycle
@@ -111,8 +111,9 @@ def main():
     if not json_flag:
         print_to_screen(day_collector)
     elif json_flag:
-        abba = json.dumps({"today": today, "caldata": calendar_data})
-        print(abba)
+        #abba = json.dumps({"today": today, "caldata":calendar_data,"daydata":day_collector[-15:-2]})
+        abba = json.dumps({"today": today, "caldata":calendar_data,"daydata":day_collector[-15:-2]})
+        print(abba) # this is necessary
     sys.exit(0)
 
 
