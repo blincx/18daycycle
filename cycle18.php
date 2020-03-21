@@ -1,10 +1,7 @@
 <html>
 <head>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-
-<script type="text/javascript" src="checkdate.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 
 
 </head>
@@ -12,9 +9,9 @@
 
 
 
-<form method="POST" action="cycle_result.php" onsubmit="return checkDate(this);">
+<form id="the_form" method="POST" action="cycle_result.php">
 <fieldset>
-<legend>18 day cycle of the adept checker:</legend>
+<legend>18 day cycle of the adept readout:</legend>
 <label>Birthdate:<input type="date" id="birthday" name="birthday" size="20" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="mm/dd/yyyy"></label>
 <input type="submit">
 </fieldset>
@@ -37,20 +34,12 @@ if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('
         is_safari = true;
 }
 
-if (!is_safari) {
-    if (!document.support_date){ //if browser doesn't support input type="date", initialize date picker widget:
-        jQuery(function($){ //on document.ready
-            $('#birthday').datepicker();
-        })
-    }
-} else { // Safari
+if (is_safari) {
     dateinput = document.getElementById("birthday");
     dateinput.value = "MM/DD/YYYY";
 }
-</script>
 
 <!-- populate from cookie-->
-<script>
 
 window.getCookie = function(name) {
   var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -64,6 +53,8 @@ $( document ).ready(function() {
         dateinput.value = abba;
     }
 });
+
+// $("#the_form").validate();
 </script>
 
 
