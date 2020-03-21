@@ -9,7 +9,7 @@ DEBUG = False
 if DEBUG:
     logging.basicConfig(filename='logs/18daycycle.log', level=logging.DEBUG)
 else:
-    logging.basicConfig(filename='logs/18daycycle.log', level=logging.INFO)
+    logging.basicConfig(filename='logs/18daycycle.log', level=logging.ERROR)
 
 
 def loadconfig():
