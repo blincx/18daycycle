@@ -10,6 +10,8 @@ E. -INTERNET EXPLORER
 
 5. unit test, unit test, unit test
 
+6. Write confirmatory Ruby script
+
 7. Add some verbiage and a header
 
 9. Add Law of One inspired stylings and front page
