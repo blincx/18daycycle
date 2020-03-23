@@ -1,38 +1,31 @@
 #!/usr/bin/env python3
-
 # confirm18.py
-
 # script to double check 18daycycle.py
+
+
 import sys, copy, logging
 from datetime import datetime,timedelta
 
-#def setup(birthd=sys.argv[1]):
-#    birthday = datetime.strptime(birthd, "%Y-%m-%d")
-#    # very important to replace seconds and microseconds with 0
-#    today = clean_today()
-#    # the above line is VERY, VERY IMPORTANT
-#    return (birthday,today)
 
 
 def clean_today():
     return datetime.now().replace(second=0, microsecond=0,minute=0,hour=0)
 
-def format_date(datetime_obj):
+def date_string_from_obj(datetime_obj):
     return datetime_obj.strftime("%Y/%m/%d")
 
-def datetime_obj_from_string(date1):
-    date_date = datetime.strptime(date1, "%Y-%m-%d")
+def datetime_obj_from_string(datestring):
+    date_date = datetime.strptime(datestring, "%Y-%m-%d")
     return date_date
 
 def simple_loop_method(birthday,today):
     diff = (today - birthday).days
     newday = copy.copy(birthday)
     CYCLE_DAY = 1
+    # diff above non-inclusive
     for i in range(1,diff+2):
-        #print(newday)
-        #print(today)
         if (newday==today):
-            date_nice = format_date(newday)
+            date_nice = date_string_from_obj(newday)
             logging.debug(f"simple_loop_method returned: {date_nice}, {CYCLE_DAY}")
             return (date_nice, CYCLE_DAY)
         # increment
@@ -63,19 +56,40 @@ def simple_subtraction_method(birthday,today):
 
 
 
+def back_five(cycle_day,today):
+    five_back = []
+
+    for i in range(1,6): #1-5
+        if (i==1):
+            newday = today - timedelta(days=1)
+        else:
+            newday = newday - timedelta(days=1)
+        if (cycle_day==1):
+            cycle_day = 18
+        else:
+            cycle_day = cycle_day - 1        
+        five_back.append((newday,cycle_day))
+    return five_back
+
+def forward_five(cycle_day,today):
+    five_forward = []
+
+    for i in range(1,6): #1-5
+        if (i==1):
+            newday = today + timedelta(days=1)
+        else:
+            newday = newday + timedelta(days=1)
+        if (cycle_day==18):
+            cycle_day = 1
+        else:
+            cycle_day = cycle_day + 1
+        five_forward.append((newday,cycle_day))
+    return five_forward
 
 
-#def main():
-    #birthday,today = setup()
-    #data = simple_loop_method(birthday,today)
-    #data2 = simple_subtraction_method(birthday,today)
-    #print(data)
-    #print(data2)
-    #return data
-    
-    #print(current_day_position)
 
-#main()
+
+
 
 
 

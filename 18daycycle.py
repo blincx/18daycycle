@@ -4,6 +4,9 @@ from datetime import datetime,timedelta
 import yaml, sys, json
 import pprint
 import logging
+from confirm18 import simple_loop_method, simple_subtraction_method
+from confirm18 import clean_today, format_date, datetime_obj_from_string
+
 
 DEBUG = False
 if DEBUG:
