@@ -38,7 +38,24 @@ def get_current_day_position_in_cycle_modulo_method(birthday,today,totaldays):
     return current_day_in_cycle
 
 
-def test_modulo(birthday,today):
+
+def simple_loop_method(birthday,today):
+    diff = (today - birthday).days
+    newday = copy.copy(birthday)
+    CYCLE_DAY = 1
+    for i in range(1,diff+1):
+        if (newday==today):
+            return (newday, CYCLE_DAY)
+        # increment
+        newday = newday + timedelta(days=1)
+        if (CYCLE_DAY==18):
+            CYCLE_DAY = 1
+        else:
+            CYCLE_DAY = CYCLE_DAY + 1
+    raise "You triggered: The Apocalypse."       
+
+
+def modulo_method(birthday,today):
     found_last_18th_day = False
     last_18th_day = None
     loopy_day = copy.copy(today)
@@ -54,7 +71,7 @@ def test_modulo(birthday,today):
             # go back another day
             loopy_day = loopy_day - timedelta(days=1)
     
-
+    # bump it to first day
     last_1st_day = last_18th_day + timedelta(days=1)
     did_we_reach_today = False
     another_loopy_day = copy.copy(last_1st_day)
@@ -86,7 +103,7 @@ def test_modulo(birthday,today):
 
 def main():
     birthday,today,totaldays = setup()
-    test = test_modulo(birthday,today)
+    test = modulo_method(birthday,today)
     print(test)
     #current_day_position = get_current_day_position_in_cycle_modulo_method(birthday,today,totaldays)
     #print(current_day_position)
