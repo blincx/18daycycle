@@ -43,11 +43,6 @@ def get_args():
     return (birfdae, json_flag)
 
 
-def check_date(birthday):
-    StartDate = datetime.strptime(birthday, "%Y-%m-%d")
-    logging.debug(f"received date: {birthday}")
-    return StartDate
-
 
 def cycle_up(first_date,multiple):
     new_first_date = first_date + timedelta(days=(18*multiple))
@@ -118,7 +113,7 @@ def print_to_screen(data):
 
 def main():
     birthday, json_flag = get_args()
-    startdate = check_date(birthday)
+    startdate = datetime_obj_from_string(birthday)
     first_day_1_last_month = cycle_up_to_last_month(startdate)
     today,calendar_data,day_collector = build_final_cycles_calendar_data(first_day_1_last_month)
     # today 
