@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timedelta
-from confirm18 import simple_loop_method, simple_subtraction_method, clean_today, format_date, datetime_obj_from_string
+from confirm18 import simple_loop_method, simple_subtraction_method, clean_today, date_string_from_obj, datetime_obj_from_string
 
 
 
@@ -40,7 +40,6 @@ class TestSimpleLoopMethod(unittest.TestCase):
 
 
 
-
     def test_simple_subtraction_method(self):
         # Feb 12 - March 19th - 37 days - should end up on 1st day
         feb122020 = datetime_obj_from_string("2020-02-12")
@@ -60,7 +59,7 @@ class TestSimpleLoopMethod(unittest.TestCase):
 
     
 
-
+    # def test ten_forward
 
 if __name__ == '__main__':
     unittest.main()
