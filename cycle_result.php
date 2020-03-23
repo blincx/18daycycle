@@ -40,9 +40,9 @@
         $data_json = json_decode($output);
     }
     // redirect if someone uses a date too close to present
-    if (!isset($data_json->today)) {
+    /*if (!isset($data_json->today)) {
         header("Location: cycle18.php");
-    }
+    }*/
     echo $birthdate;
 ?>
 <head>

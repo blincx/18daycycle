@@ -14,6 +14,9 @@ def clean_today():
 def date_string_from_obj(datetime_obj):
     return datetime_obj.strftime("%Y/%m/%d")
 
+def readable_date(datetime_obj):
+    return datetime_obj.strftime("%B %d")
+
 def datetime_obj_from_string(datestring):
     date_date = datetime.strptime(datestring, "%Y-%m-%d")
     return date_date
@@ -56,25 +59,11 @@ def simple_subtraction_method(birthday,today):
 
 
 
-def back_five(cycle_day,today):
-    five_back = []
-
-    for i in range(1,6): #1-5
-        if (i==1):
-            newday = today - timedelta(days=1)
-        else:
-            newday = newday - timedelta(days=1)
-        if (cycle_day==1):
-            cycle_day = 18
-        else:
-            cycle_day = cycle_day - 1        
-        five_back.append((newday,cycle_day))
-    return five_back
-
-def forward_five(cycle_day,today):
-    five_forward = []
-
-    for i in range(1,6): #1-5
+def forward_ten(cycle_day,today):
+    ten_forward = []
+    ten_forward.append((readable_date(today),cycle_day))
+    
+    for i in range(1,11): #1-10
         if (i==1):
             newday = today + timedelta(days=1)
         else:
@@ -83,8 +72,8 @@ def forward_five(cycle_day,today):
             cycle_day = 1
         else:
             cycle_day = cycle_day + 1
-        five_forward.append((newday,cycle_day))
-    return five_forward
+        ten_forward.append((readable_date(newday),cycle_day))
+    return ten_forward
 
 
 
