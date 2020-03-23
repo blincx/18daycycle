@@ -133,7 +133,7 @@ def main():
 
 
 def old_main():
-    print("BY ANOTHER METHOD OF CALCULATION:\n")
+    print("AND ALSO, BY ANOTHER METHOD OF CALCULATION:\n")
     birthday, json_flag = get_args()
     startdate = datetime_obj_from_string(birthday)
     first_day_1_last_month = cycle_up_to_last_month(startdate)
@@ -148,8 +148,8 @@ def old_main():
         print(abba) # this is necessary
     logging.info(f"script called with args: {sys.argv}; birthday={birthday}; json_flag={json_flag}; startdate={startdate}; first_day_1_last_month={first_day_1_last_month}; today={today};")
 
-
-main()
-print("\n")
-old_main()
+if __name__ == '__main__':
+    main()
+    print("\n")
+    old_main()
 
