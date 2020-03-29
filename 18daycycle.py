@@ -35,15 +35,16 @@ def get_args():
         birfdae = loadconfig()
         json_flag = False
     elif len(sys.argv)==2:
-        if sys.argv[1]=="help":
-            helptext = """Please call cycle18 with the relevant birthdate in the following format: YYYY-MM-DD, adding 'json' as a second argument if you want output in JSON."""
+        if ("help" in sys.argv):
+            helptext = """Please call 18daycycle with the relevant birthdate in the following format: YYYY-MM-DD, adding 'json' as a second argument if you want output in JSON."""
             print(helptext)                    
             sys.exit(0)
-        birfdae = sys.argv[1]
+        if ("-" in sys.argv[1]):
+            birfdae = sys.argv[1]
         json_flag = False
     elif len(sys.argv) == 3:
         birfdae = sys.argv[1]
-        json_flag = (sys.argv[2].lower() == 'json')
+        json_flag = ("json" in sys.argv)
     logging.debug(f"get_args returned: birfdae={birfdae} json_flag={json_flag}")
     return (birfdae, json_flag)
 

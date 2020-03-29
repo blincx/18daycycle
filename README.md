@@ -25,6 +25,18 @@ And navigate your browser to `cycle18.php`.
 Voila, you should be able to enter your birthdate and see it working.
 
 
+## Two modes of calling the program
+
+This program can be called in two ways: 
+- Through the PHP front-end provided in cycle18.php
+- Throw command line arguments
+
+Calling through the command line can be done like this:
+`python3 18daycycle.py 1930-02-27`
+optional extra parameters are `debug` and `json`
+`python3 18daycycle.py 1943-07-16 debug`
+`python3 18daycycle.py 1987-07-08 json`
+
 ## Logging
 
 Look in `logs/18daycycle.log` for logging data
