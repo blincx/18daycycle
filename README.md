@@ -41,7 +41,8 @@ overloading disk space.
 ## Unit tests
 
 I calculated some examples of 18 day cycle coordinates by hand and the machinery
-of the scripts can be tested against these hand-calculated-coordinates by doing:
+of the scripts can be tested against these hand-calculated coordinates by
+running:
 
 `python3 test18.py`
 
