@@ -20,7 +20,7 @@ Install this program by cloning this git repo:
 `pip3 install -r requirements.txt`
     
 Now launch your php server, making sure it points to the php files included.
-And navigate your browser to cycle18.php. 
+And navigate your browser to `cycle18.php`.
 
 Voila, you should be able to enter your birthdate and see it working.
 
