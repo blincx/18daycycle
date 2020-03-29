@@ -8,8 +8,10 @@ display the position in the cycle.
 ## Requirements
 
 `python3`
+
 `php` 
-`pyyaml python library`
+
+`pyyaml` (python library)
 
 ## Installation
 
