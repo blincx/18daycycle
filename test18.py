@@ -24,7 +24,7 @@ class TestSimpleLoopMethod(unittest.TestCase):
         diff01 = (mar192020 - feb122020).days
         print(f"{diff01} days difference")
         print("yet if you count from calendar, it is 37 days.")
-        print("This is the cause of the original error")
+        print("This was the cause of the original error")
         cycle_test = simple_loop_method(feb122020,mar192020)
         self.assertEqual(cycle_test[1],1,"simple_loop_method not working")
         

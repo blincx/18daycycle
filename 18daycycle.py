@@ -112,19 +112,17 @@ def main():
     birthday = datetime_obj_from_string(birthday0)
     today = clean_today()
     todayconfirm,CYCLE_DAY = simple_loop_method(birthday,today)
-    print(todayconfirm)
     CYCLE_DAYconfirm = simple_subtraction_method(birthday,today)
     if (CYCLE_DAYconfirm != CYCLE_DAY):
         logging.error(f"Wrench apocalypse 1! simple_loop_method returned {CYCLE_DAY} and simple_subtraction_method returned {CYCLE_DAY}!")
         raise Exception("Apocalyptic errors! - Get into heaven you bastards!")
 
     daydata = forward_ten(CYCLE_DAY,today)
-    print(daydata)    
     logging.debug(f"returned vars: today={today};\ndaydata={daydata};")
     if not json_flag:
         print_to_screen(daydata)
     elif json_flag:
-        abba = json.dumps({"cycle_day": CYCLE_DAY,"daydata":daydata})
+        abba = json.dumps({"today": CYCLE_DAY,"daydata":daydata})
         print(abba) # this is necessary
     logging.info(f"script called with args: {sys.argv}; birthday={birthday}; json_flag={json_flag}; today={today};")
     logging.info(f"resulting output: cycle_day={CYCLE_DAY} daydata={daydata}")
@@ -150,6 +148,6 @@ def old_main():
 
 if __name__ == '__main__':
     main()
-    print("\n")
-    old_main()
+    #print("\n")
+    #old_main()
 
