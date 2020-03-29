@@ -10,12 +10,13 @@ from confirm18 import date_string_from_obj, forward_ten
 
 
 DEBUGSWITCH = False # change if you want to turn it on from script
+LOG_LOCATION = "logs/18daycycle.log"
 
 DEBUG = ("debug" in sys.argv) or DEBUGSWITCH
 if DEBUG:
-    logging.basicConfig(format='%(asctime)s %(message)s',filename='logs/18daycycle.log', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s %(message)s',filename=LOG_LOCATION, level=logging.DEBUG)
 else:
-    logging.basicConfig(format='%(asctime)s %(message)s', filename='logs/18daycycle.log', level=logging.ERROR)
+    logging.basicConfig(format='%(asctime)s %(message)s', filename=LOG_LOCATION, level=logging.ERROR)
 
 
 def loadconfig():
