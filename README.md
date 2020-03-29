@@ -7,11 +7,9 @@ display the position in the cycle.
 
 ## Requirements
 
-`python3`
-
-`php` 
-
-`pyyaml` (python library)
+- `python3`
+- `php` 
+- `pyyaml` (python library)
 
 ## Installation
 
