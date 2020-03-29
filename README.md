@@ -5,6 +5,12 @@ This is a program to calculate the current position in the 18 day cycle.
 It contains unit tests which test accuracy, and a php script to input and
 display the position in the cycle. 
 
+## Requirements
+
+`python3`
+`php` 
+`pyyaml python library`
+
 ## Installation
 
 Install this program by cloning this git repo:
