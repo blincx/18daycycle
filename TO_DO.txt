@@ -8,18 +8,9 @@ C. done SAFARI
 D. done CHROME
 E. -INTERNET EXPLORER
 
-5. unit test, unit test, unit test
-
-6. Write confirmatory Ruby script
-
 7. Add some verbiage and a header
 
 9. Add Law of One inspired stylings and front page
 
-10. Fix bug:
-in Safari, this breaks it:
- 03/03/2020
-
- recent dates cause it look for cyc_null ?
 
 
