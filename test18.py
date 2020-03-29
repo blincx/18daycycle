@@ -11,12 +11,13 @@ February 12th - March 19th
 
 # dateformat : %Y-%m-%d
 
-
 class TestSimpleLoopMethod(unittest.TestCase):
     """
     Test the simple loop method
     """
     def test_simple_loop_method(self):
+        print("Testing simple_loop_method...")
+        print("using hand-calculated coordinates")
         # Feb 12 - March 19th - 37 days - should end up on 1st day
         feb122020 = datetime_obj_from_string("2020-02-12")
         mar192020 = datetime_obj_from_string("2020-03-19")
@@ -41,6 +42,8 @@ class TestSimpleLoopMethod(unittest.TestCase):
 
 
     def test_simple_subtraction_method(self):
+        print("Testing simple_subtraction_method...")
+        print("using hand-calculated coordinates")
         # Feb 12 - March 19th - 37 days - should end up on 1st day
         feb122020 = datetime_obj_from_string("2020-02-12")
         mar192020 = datetime_obj_from_string("2020-03-19")
