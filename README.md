@@ -8,8 +8,8 @@ display the position in the cycle.
 ## Installation
 
 Install this program by cloning this git repo:
-    git clone https://github.com/blincx/18daycycle.git
-    pip3 install -r requirements.txt
+    `git clone https://github.com/blincx/18daycycle.git`
+    `pip3 install -r requirements.txt`
     
 Now launch your php server, making sure it points to the php files included.
 And go to cycle18.php. 
