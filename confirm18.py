@@ -3,10 +3,9 @@
 # script to double check 18daycycle.py
 
 
-import sys, copy, logging
+import sys, copy
 from datetime import datetime,timedelta
 
-logging.basicConfig(format='%(asctime)s %(message)s',filename='logs/18daycycle.log', level=logging.DEBUG)
 
 
 def clean_today():
@@ -30,7 +29,6 @@ def simple_loop_method(birthday,today):
     for i in range(1,diff+2):
         if (newday==today):
             date_nice = date_string_from_obj(newday)
-            logging.debug(f"simple_loop_method returned: {date_nice}, {CYCLE_DAY}")
             return (date_nice, CYCLE_DAY)
         # increment
         newday = newday + timedelta(days=1)
@@ -39,7 +37,6 @@ def simple_loop_method(birthday,today):
             CYCLE_DAY = 1
         else:
             CYCLE_DAY = CYCLE_DAY + 1
-    logging.error("simple_loop_method failed") 
     raise "You triggered: The Apocalypse."       
 
 
@@ -55,7 +52,6 @@ def simple_subtraction_method(birthday,today):
     # that is actually 1 day less than the entire span. 
     # hence, adding 1
     CYCLE_DAY = daytotal + 1 # think through this
-    logging.debug(f"simple_subtraction_method returned: {CYCLE_DAY}")
     return CYCLE_DAY
 
 
