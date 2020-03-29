@@ -17,8 +17,6 @@ if DEBUG:
 else:
     logging.basicConfig(format='%(asctime)s %(message)s', filename='logs/18daycycle.log', level=logging.ERROR)
 
-logging.basicConfig()
-
 
 def loadconfig():
     with open(r'birthday.yaml') as file:

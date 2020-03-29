@@ -6,6 +6,7 @@
 import sys, copy, logging
 from datetime import datetime,timedelta
 
+logging.basicConfig(format='%(asctime)s %(message)s',filename='logs/18daycycle.log', level=logging.DEBUG)
 
 
 def clean_today():
