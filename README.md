@@ -52,13 +52,10 @@ running:
 The php and javascript in this repo has been tested against the latest versions
 of the following browsers:
 
--Chrome
-
--Firefox
-
--Opera
-
--Safari
+- Chrome
+- Firefox
+- Opera
+- Safari
 
 It has not yet been tested against Internet Explorer. 
 
