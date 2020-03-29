@@ -27,19 +27,20 @@ Voila, you should be able to enter your birthdate and see it working.
 
 ## Logging
 
-Look in `logs/18daycycle.py` for logging data
+Look in `logs/18daycycle.log` for logging data
 
 ## Running in debug mode
 
-Either change DEBUGSWITCH in 18daycycle.py
-or supply "debug" argument to your normal call from the command line. 
+Either change DEBUGSWITCH in 18daycycle.py, or supply "debug" argument to your normal call from the command line. 
+Leaving it in DEBUG mode will log several lines per request, be wary of
+overloading disk space. 
 
 ## Unit tests
 
 I calculated some examples of 18 day cycle coordinates by hand and the machinery
 of the scripts can be tested against these hand-calculated-coordinates by doing:
 
-`python3 -m unittest test18.py`
+`python3 test18.py`
 
 
 ## Browser testing
