@@ -33,8 +33,9 @@ Look in `logs/18daycycle.log` for logging data
 
 ## Running in debug mode
 
-Either change DEBUGSWITCH in 18daycycle.py, or supply "debug" argument to your normal call from the command line. 
-Leaving it in DEBUG mode will log several lines per request, be wary of
+Either change `DEBUGSWITCH` in `18daycycle.py`, or supply "debug" argument to your normal call from the command line. 
+
+Leaving it in `DEBUG` mode will log several (>6) lines per request, be wary of
 overloading disk space. 
 
 ## Unit tests
