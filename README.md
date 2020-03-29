@@ -8,13 +8,41 @@ display the position in the cycle.
 ## Installation
 
 Install this program by cloning this git repo:
-    `git clone https://github.com/blincx/18daycycle.git`
-    `pip3 install -r requirements.txt`
+
+`git clone https://github.com/blincx/18daycycle.git`
+
+`pip3 install -r requirements.txt`
     
 Now launch your php server, making sure it points to the php files included.
-And go to cycle18.php. 
+And navigate your browser to cycle18.php. 
 
 Voila, you should be able to enter your birthdate and see it working.
 
 
-    
+## Logging
+
+Look in `logs/18daycycle.py` for logging data
+
+## Running in debug mode
+
+Either change DEBUGSWITCH in 18daycycle.py
+or supply "debug" argument to your normal call from the command line. 
+
+## Unit tests
+
+I calculated some examples of 18 day cycle coordinates by hand and the machinery
+of the scripts can be tested against these hand-calculated-coordinates by doing:
+
+`python3 -m unittest test18.py`
+
+
+## Browser testing
+
+The php and javascript in this repo has been tested against the latest versions
+of the following browsers:
+-Chrome
+-Firefox
+-Opera
+-Safari
+
+It has not yet been tested against Internet Explorer. 

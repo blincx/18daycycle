@@ -9,11 +9,15 @@ from confirm18 import clean_today, readable_date, datetime_obj_from_string
 from confirm18 import date_string_from_obj, forward_ten
 
 
-DEBUG = False
+DEBUGSWITCH = False # change if you want to turn it on from script
+
+DEBUG = ("debug" in sys.argv) or DEBUGSWITCH
 if DEBUG:
-    logging.basicConfig(filename='logs/18daycycle.log', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s %(message)s',filename='logs/18daycycle.log', level=logging.DEBUG)
 else:
-    logging.basicConfig(filename='logs/18daycycle.log', level=logging.ERROR)
+    logging.basicConfig(format='%(asctime)s %(message)s', filename='logs/18daycycle.log', level=logging.ERROR)
+
+logging.basicConfig()
 
 
 def loadconfig():
@@ -120,6 +124,8 @@ def main():
     daydata = forward_ten(CYCLE_DAY,today)
     logging.debug(f"returned vars: today={today};\ndaydata={daydata};")
     if not json_flag:
+        if DEBUG:
+            print("Hey! You're in DEBUG mode!")
         print_to_screen(daydata)
     elif json_flag:
         abba = json.dumps({"today": CYCLE_DAY,"daydata":daydata})
