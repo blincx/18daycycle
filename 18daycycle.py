@@ -10,7 +10,7 @@ from confirm18 import date_string_from_obj, forward_ten
 
 
 DEBUGSWITCH = False # change if you want to turn it on from script
-LOG_LOCATION = "logs/18daycycle.log"
+LOG_LOCATION = "/users/eb/source/18daycycle/logs/18daycycle.log"
 
 DEBUG = ("debug" in sys.argv) or DEBUGSWITCH
 if DEBUG:
